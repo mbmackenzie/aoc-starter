@@ -1,5 +1,4 @@
 import os
-import pathlib
 from typing import Optional
 
 import click
@@ -26,6 +25,9 @@ def cli(year: int, day: Optional[int]):
         solution = get_solution(year, day)
     except ModuleNotFoundError:
         click.echo(f"Solution for day {day} of {year} not found!")
+        click.echo(
+            f"You can create a new implementation by running 'aoc create --year {year} --day {day}'"
+        )
         return
 
     display_solution(solution)

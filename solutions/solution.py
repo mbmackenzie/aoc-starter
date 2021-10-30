@@ -5,8 +5,8 @@ from abc import ABC, abstractmethod
 from .input_reader import InputReader
 
 
-class NotImplemented:
-    pass
+class NotImplemented(Exception):
+    """Not implemented exception."""
 
 
 class Solution(ABC):

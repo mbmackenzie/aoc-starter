@@ -1,4 +1,4 @@
-import pandas as pd
+from typing import Callable, Optional
 
 
 class InputReader:
@@ -12,15 +12,8 @@ class InputReader:
         with open(self.filename, "r") as f:
             return f.readlines()
 
-    def as_list(self, cast_as: str = "int") -> list:
-        if cast_as == "int":
-            return [int(x) for x in self.__content]
-        elif cast_as == "float":
-            return [float(x) for x in self.__content]
-        else:
-            return [x.strip() for x in self.__content]
+    def as_list(self, mutate: Optional[Callable] = None) -> list:
+        if mutate:
+            return [mutate(x) for x in self.__content]
 
-
-if __name__ == "__main__":
-    input_reader = InputReader(2020, 1)
-    print(input_reader.as_list())
+        return [x.strip() for x in self.__content]
