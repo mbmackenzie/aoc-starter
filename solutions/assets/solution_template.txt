@@ -1,0 +1,28 @@
+"""{docstring}"""
+
+# from solutions.input_reader import InputReader
+from solutions.solution import Solution, NotImplemented
+
+
+class Day{day:02}(Solution):
+    """Solution to day {day} of the {year} Advent of Code"""
+
+    data: list[int]
+
+    def __init__(self):
+        super().__init__({year}, {day}, "{name}")
+
+    def part_one(self) -> None:
+        """TODO"""
+        return NotImplemented
+
+    def part_two(self) -> None:
+        """TODO"""
+        return NotImplemented
+
+    ## Need to to read data as something other than a list?
+    ## Uncomment the InputReader at the top, and implement the _read_data function
+    # def _read_data(self) -> ?:
+    #     input_reader = InputReader(self.year, self.day)
+    #     return
+
