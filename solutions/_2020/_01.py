@@ -5,8 +5,6 @@ from itertools import combinations
 
 from solutions.solution import Solution
 
-TEST_DATA = [2018, 2, 1, 1]
-
 
 def generic_solution(data: list[int], n_terms: int, target_sum: int) -> int:
     """
@@ -37,8 +35,3 @@ class Day01(Solution):
     def part_two(self) -> int:
         """Find three numbers in data that add to 2020 and return their product"""
         return generic_solution(self.data, 3, 2020)
-
-
-if __name__ == "__main__":
-    print("n_terms = 2 ->", generic_solution(TEST_DATA, 2, 2020))
-    print("n_terms = 3 ->", generic_solution(TEST_DATA, 3, 2020))

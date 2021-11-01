@@ -7,7 +7,7 @@ from datetime import datetime
 from typing import Union
 
 import click
-from solutions.solution import Solution
+from solutions.solution import Solution, SolutionResult
 
 
 def get_latest_year() -> int:
@@ -28,17 +28,25 @@ def get_solution(year: int, day: int) -> Solution:
     return solution_cls()
 
 
-def display_solution(solution: Solution) -> None:
+def display_solution(solution: Solution, timeit: bool, number: int) -> None:
     """Display the first and second parts of the solution"""
-    part_one, part_two = solution()
+    part_one, part_two = solution(timeit, number)
 
     def part_name(part: int) -> str:
         color = "green" if part == 1 else "red"
         return click.style(f"Part {part}:", fg=color)
 
+    def display_part(part: int, result: SolutionResult) -> None:
+        time_res = f" ({result.time:.03f} sec)" if timeit else ""
+        click.echo(f"{part_name(part)} {result.result}{time_res}")
+
     click.secho(f"Day {solution.day}, {solution.year}", bold=True)
-    click.echo(f"{part_name(1)} {part_one}")
-    click.echo(f"{part_name(2)} {part_two}")
+
+    display_part(1, part_one)
+    display_part(2, part_two)
+
+    if timeit:
+        click.secho(f"Times represent best of {number:,d} runs", fg="yellow")
 
 
 def proceed_with_overwrite(force: bool, confirm: bool) -> bool:

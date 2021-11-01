@@ -14,9 +14,11 @@ from solutions.helpers import (
 
 
 @click.group(invoke_without_command=True)
-@click.option("--year", "year", type=int, default=get_latest_year())
-@click.option("--day", "day", type=int, default=None)
-def cli(year: int, day: Optional[int]):
+@click.option("--year", type=int, default=get_latest_year())
+@click.option("--day", type=int, default=None)
+@click.option("--timeit", is_flag=True, default=False)
+@click.option("--number", "-n", "number", type=int, default=1000)
+def cli(year: int, day: Optional[int], timeit: bool, number: int):
     if not day:
         click.echo("Advent of Code")
         return
@@ -30,7 +32,7 @@ def cli(year: int, day: Optional[int]):
         )
         return
 
-    display_solution(solution)
+    display_solution(solution, timeit, number)
 
 
 @cli.command()

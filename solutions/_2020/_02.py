@@ -1,9 +1,7 @@
 """Day 2"""
 
 from solutions.input_reader import InputReader
-from solutions.solution import Solution, NotImplemented
-
-TEST_DATA = ["1-3 a: abcde", "1-3 b: cdefg", "2-9 c: ccccccccc"]
+from solutions.solution import Solution
 
 
 def parse_password(data: str) -> tuple[int, int, str, str]:
@@ -42,8 +40,3 @@ class Day02(Solution):
     def _read_data(self) -> list[tuple[int, int, str, str]]:
         input_reader = InputReader(self.year, self.day)
         return input_reader.as_list(mutate=parse_password)
-
-
-if __name__ == "__main__":
-    solution = Day02()
-    print(solution())
