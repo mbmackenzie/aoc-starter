@@ -23,10 +23,8 @@ def generic_solution(data: list[int], n_terms: int, target_sum: int) -> int:
 class Day01(Solution):
     """Solution to day one of the 2020 Advent of Code"""
 
-    data: list[int]
-
     def __init__(self):
-        super().__init__(2020, 1)
+        super().__init__(2020, 1, "Report Repair")
 
     def part_one(self) -> int:
         """Find two numbers in data that add to 2020 and return their product"""
@@ -35,3 +33,7 @@ class Day01(Solution):
     def part_two(self) -> int:
         """Find three numbers in data that add to 2020 and return their product"""
         return generic_solution(self.data, 3, 2020)
+
+    def _get_data(self) -> list[int]:
+        """Read the data from the file"""
+        return self.input.as_list(int)

@@ -35,7 +35,7 @@ class Day03(Solution):
 
     def __init__(self):
         self.spaces_per_row = None
-        super().__init__(2020, 3, "None")
+        super().__init__(2020, 3, "")
 
     def part_one(self) -> int:
         """How many trees do you hit moving down 1 and right 3?"""
@@ -51,8 +51,6 @@ class Day03(Solution):
 
         return ret
 
-    def _read_data(self) -> list[list[int]]:
-        input_reader = InputReader(self.year, self.day)
-        self.spaces_per_row = len(input_reader.as_list()[0])
-
-        return input_reader.as_list(parse_input)
+    def _get_data(self) -> list[list[int]]:
+        self.spaces_per_row = len(self.input.as_list()[0])
+        return self.input.as_list(parse_input)

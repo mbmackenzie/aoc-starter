@@ -14,10 +14,8 @@ def parse_password(data: str) -> tuple[int, int, str, str]:
 class Day02(Solution):
     """Solution to day 2 of the 2020 Advent of Code"""
 
-    data: list[tuple[int, int, str, str]]
-
     def __init__(self):
-        super().__init__(2020, 2, "None")
+        super().__init__(2020, 2, "")
 
     def part_one(self) -> int:
         """Checks how many passwords have between min and max occurences of a letter"""
@@ -37,6 +35,5 @@ class Day02(Solution):
 
         return sum(check_password(*password) for password in self.data)
 
-    def _read_data(self) -> list[tuple[int, int, str, str]]:
-        input_reader = InputReader(self.year, self.day)
-        return input_reader.as_list(mutate=parse_password)
+    def _get_data(self) -> list[tuple[int, int, str, str]]:
+        return self.input.as_list(mutate=parse_password)

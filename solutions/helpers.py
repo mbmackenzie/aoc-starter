@@ -40,7 +40,7 @@ def display_solution(solution: Solution, timeit: bool, number: int) -> None:
         time_res = f" ({result.time:.03f} sec)" if timeit else ""
         click.echo(f"{part_name(part)} {result.result}{time_res}")
 
-    click.secho(f"Day {solution.day}, {solution.year}", bold=True)
+    click.secho(solution, bold=True)
 
     display_part(1, part_one)
     display_part(2, part_two)

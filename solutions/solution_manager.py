@@ -101,7 +101,9 @@ class SolutionManager:
 
     def _format_solution_template(self, template: str) -> str:
         """Format the template for a solution"""
+        
+        name = self.name if self.name else ""
         docstring = f"Day {self.day}" + (f": {self.name}" if self.name else "")
         return template.format(
-            year=self.year, day=self.day, name=self.name, docstring=docstring
+            year=self.year, day=self.day, name=name, docstring=docstring
         )
