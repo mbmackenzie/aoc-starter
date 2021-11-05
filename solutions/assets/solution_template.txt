@@ -1,6 +1,7 @@
 """{docstring}"""
 
-from solutions.solution import Solution, NotImplemented
+from solutions.solution import Solution
+from solutions.solution import NotImplemented
 
 
 class Day{day:02}(Solution):
@@ -9,11 +10,11 @@ class Day{day:02}(Solution):
     def __init__(self):
         super().__init__({year}, {day}, "{name}")
 
-    def part_one(self) -> int:
+    def _part_one(self) -> int:
         """TODO"""
         return NotImplemented
 
-    def part_two(self) -> int:
+    def _part_two(self) -> int:
         """TODO"""
         return NotImplemented
 

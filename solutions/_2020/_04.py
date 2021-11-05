@@ -39,7 +39,7 @@ class Day04(Solution):
     def __init__(self):
         super().__init__(2020, 4, "Passport Processing")
 
-    def part_one(self) -> int:
+    def _part_one(self) -> int:
         """How many passports are valid?"""
 
         def is_valid_passport(passport: dict[str, str]) -> bool:
@@ -47,7 +47,7 @@ class Day04(Solution):
 
         return sum(is_valid_passport(passport) for passport in self.data)
 
-    def part_two(self) -> int:
+    def _part_two(self) -> int:
         """How many passports are valid?"""
 
         def is_valid_passport(passport: dict[str, str]) -> bool:

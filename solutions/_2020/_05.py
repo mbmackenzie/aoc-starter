@@ -26,11 +26,11 @@ class Day05(Solution):
     def __init__(self):
         super().__init__(2020, 5, "Binary Boarding")
 
-    def part_one(self) -> int:
+    def _part_one(self) -> int:
         """Returns the max row * column"""
         return max(self.data)
 
-    def part_two(self) -> int:
+    def _part_two(self) -> int:
         """What seat is your seat?"""
         sorted_seat_ids = sorted(self.data)
         diffs = [x - y for x, y in zip(sorted_seat_ids[1:], sorted_seat_ids[:-1])]

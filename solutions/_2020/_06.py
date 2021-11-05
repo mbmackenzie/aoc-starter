@@ -12,11 +12,11 @@ class Day06(Solution):
     def __init__(self):
         super().__init__(2020, 6, "Custom Customs")
 
-    def part_one(self) -> int:
+    def _part_one(self) -> int:
         """Sum of the number of unique questions each group answered"""
         return sum(map(len, self.data))
 
-    def part_two(self) -> int:
+    def _part_two(self) -> int:
         """TODO"""
 
         def mutli_intersect(sets: list[set[str]]) -> set[str]:

@@ -17,7 +17,7 @@ class Day02(Solution):
     def __init__(self):
         super().__init__(2020, 2, "")
 
-    def part_one(self) -> int:
+    def _part_one(self) -> int:
         """Checks how many passwords have between min and max occurences of a letter"""
 
         def check_password(min: int, max: int, letter: str, password: str) -> bool:
@@ -26,7 +26,7 @@ class Day02(Solution):
 
         return sum(check_password(*password) for password in self.data)
 
-    def part_two(self) -> int:
+    def _part_two(self) -> int:
         """Checks how many passwords have letter at idx1 XOR idx2"""
 
         def check_password(idx1: int, idx2: int, letter: str, password: str) -> bool:

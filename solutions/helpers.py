@@ -37,7 +37,7 @@ def display_solution(solution: Solution, timeit: bool, number: int) -> None:
         return click.style(f"Part {part}:", fg=color)
 
     def display_part(part: int, result: SolutionResult) -> None:
-        time_res = f" ({result.time:.03f} sec)" if timeit else ""
+        time_res = f" ({result.avg_time:.05f} sec)" if timeit else ""
         click.echo(f"{part_name(part)} {result.result}{time_res}")
 
     click.secho(solution, bold=True)
@@ -46,7 +46,7 @@ def display_solution(solution: Solution, timeit: bool, number: int) -> None:
     display_part(2, part_two)
 
     if timeit:
-        click.secho(f"Times represent best of {number:,d} runs", fg="yellow")
+        click.secho(f"Times represent average of {number:,d} runs", fg="yellow")
 
 
 def proceed_with_overwrite(force: bool, confirm: bool) -> bool:

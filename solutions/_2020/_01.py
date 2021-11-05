@@ -26,11 +26,11 @@ class Day01(Solution):
     def __init__(self):
         super().__init__(2020, 1, "Report Repair")
 
-    def part_one(self) -> int:
+    def _part_one(self) -> int:
         """Find two numbers in data that add to 2020 and return their product"""
         return generic_solution(self.data, 2, 2020)
 
-    def part_two(self) -> int:
+    def _part_two(self) -> int:
         """Find three numbers in data that add to 2020 and return their product"""
         return generic_solution(self.data, 3, 2020)
 

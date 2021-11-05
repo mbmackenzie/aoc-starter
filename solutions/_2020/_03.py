@@ -37,11 +37,11 @@ class Day03(Solution):
         self.spaces_per_row = None
         super().__init__(2020, 3, "")
 
-    def part_one(self) -> int:
+    def _part_one(self) -> int:
         """How many trees do you hit moving down 1 and right 3?"""
         return generic_solution(self.data, (3, 1), self.spaces_per_row)
 
-    def part_two(self) -> int:
+    def _part_two(self) -> int:
         """Return the product of the generic_solution for mutliple slopes"""
         slopes = [(1, 1), (3, 1), (5, 1), (7, 1), (1, 2)]
 
