@@ -1,6 +1,5 @@
 """Day 2"""
 
-from solutions.input_reader import InputReader
 from solutions.solution import Solution
 
 

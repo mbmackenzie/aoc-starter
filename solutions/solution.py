@@ -1,13 +1,9 @@
-from typing import Any, Callable, Optional
+from typing import Any, Optional
 
 from abc import ABC, abstractmethod
 from timeit import timeit as get_best_time
 
 from .input_reader import InputReader
-
-
-class NotImplemented(Exception):
-    """Not implemented exception."""
 
 
 class SolutionResult:

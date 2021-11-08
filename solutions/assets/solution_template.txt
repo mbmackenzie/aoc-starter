@@ -1,7 +1,6 @@
 """{docstring}"""
 
 from solutions.solution import Solution
-from solutions.solution import NotImplemented
 
 
 class Day{day:02}(Solution):

@@ -1,6 +1,7 @@
 """Day 7: Handy Haversacks"""
 
 import re
+
 from solutions.solution import Solution
 
 

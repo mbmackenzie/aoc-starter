@@ -1,6 +1,6 @@
 """Day 5: Binary Boarding"""
-from typing import Callable
 
+from typing import Callable
 from functools import reduce
 
 from solutions.solution import Solution

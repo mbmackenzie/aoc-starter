@@ -1,6 +1,6 @@
 """Day 8"""
 
-from solutions.solution import Solution, NotImplemented
+from solutions.solution import Solution
 
 
 def run_program(program: list[tuple[str, int]], init_value: int = 0) -> int:

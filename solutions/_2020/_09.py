@@ -3,7 +3,6 @@
 from itertools import combinations
 
 from solutions.solution import Solution
-from solutions.solution import NotImplemented
 
 
 def number_is_valid(value: int, previous_values: list[int]) -> bool:
