@@ -2,8 +2,10 @@
 
 from solutions.solution import Solution
 
+Grid = list[str]
 
-def get_num_occupied(x: int, y: int, grid: list[str], acceptable: str) -> int:
+
+def get_num_occupied(x: int, y: int, grid: Grid, acceptable: str) -> int:
     """Get the number of empty and occupied seats amongh neighbors"""
 
     directions = [
@@ -45,8 +47,8 @@ def get_num_occupied(x: int, y: int, grid: list[str], acceptable: str) -> int:
 
 
 def update_grid(
-    old_grid: list[str], acceptable: str = ".L#", min_occupied_to_switch: int = 4
-) -> list[str]:
+    old_grid: Grid, acceptable: str = ".L#", min_occupied_to_switch: int = 4
+) -> Grid:
     """Update the grid"""
     new_grid = [""] * len(old_grid)
     for i, row in enumerate(old_grid):
@@ -63,7 +65,7 @@ def update_grid(
     return new_grid
 
 
-def update_until_stable(initial_grid: list[str], **kwargs) -> list[str]:
+def update_until_stable(initial_grid: Grid, **kwargs) -> Grid:
     prev_grid = None
     current_grid = initial_grid
 
@@ -96,5 +98,5 @@ class Day11(Solution):
         )
         return sum(seat == "#" for row in stable_grid for seat in row)
 
-    def _get_data(self) -> list[str]:
+    def _get_data(self) -> Grid:
         return self.input.as_list()
