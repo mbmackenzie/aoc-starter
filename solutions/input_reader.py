@@ -1,15 +1,25 @@
-from typing import Callable, Optional, Any
+import os
+from typing import Callable
+from typing import Optional
 
 
 class InputReader:
-    def __init__(self, year: int, day: int):
+    def __init__(self, year: int, day: int, input: Optional[str] = None):
         self.year = year
         self.day = day
-        self.filename = f"inputs/_{year}/_{day:02}.txt"
-        self.__content = self.__read_file()
+        self.filename = input if input else f"inputs/_{year}/_{day:02}.txt"
+        self._file_exits = os.path.exists(self.filename)
+
+        if self._file_exits:
+            self.__content = self.__read_file()
+        else:
+            self.__content = None
 
     @property
     def content(self) -> str:
+        if not self._file_exits:
+            raise FileNotFoundError(f"File {self.filename} not found")
+
         return self.__content
 
     def __read_file(self) -> list:
@@ -23,4 +33,5 @@ class InputReader:
         return [x.strip() for x in self.content]
 
     def reformat(self, formater: Callable, **kwargs) -> None:
-        self.__content = formater(self.content, **kwargs)
+        if self.__content:
+            self.__content = formater(self.content, **kwargs)

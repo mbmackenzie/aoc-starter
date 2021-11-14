@@ -1,4 +1,6 @@
 inputs/
+input.txt
+
 .DS_Store
 *.vscode*
 

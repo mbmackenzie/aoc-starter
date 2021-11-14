@@ -47,6 +47,10 @@ class Solution(ABC):
     def data(self) -> Any:
         return self.__data
 
+    def change_input_file(self, input_file: str) -> None:
+        self.input = InputReader(self.year, self.day, input_file)
+        self._reformat_data()
+
     def part_one(self) -> int:
         self.__data = self._get_data_for_part_one()
         return self._part_one()

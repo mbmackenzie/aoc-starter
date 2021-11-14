@@ -18,13 +18,14 @@ from solutions.helpers import (
 @click.option("--day", type=int, default=None)
 @click.option("--timeit", is_flag=True, default=False)
 @click.option("--number", "-n", "number", type=int, default=1000)
-def cli(year: int, day: Optional[int], timeit: bool, number: int):
+@click.option("--input", "-i", "input", type=str, default=None)
+def cli(year: int, day: Optional[int], timeit: bool, number: int, input: Optional[str]):
     if not day:
         click.echo("Advent of Code")
         return
 
     try:
-        solution = get_solution(year, day)
+        solution = get_solution(year, day, input=input)
     except ModuleNotFoundError:
         click.echo(f"Solution for day {day} of {year} not found!")
         click.echo(

@@ -5,9 +5,12 @@ import pathlib
 import importlib
 from datetime import datetime
 from typing import Union
+from typing import Optional
 
 import click
-from solutions.solution import Solution, SolutionResult
+
+from solutions.solution import Solution
+from solutions.solution import SolutionResult
 
 
 def get_latest_year() -> int:
@@ -18,14 +21,19 @@ def get_latest_year() -> int:
     return today.year
 
 
-def get_solution(year: int, day: int) -> Solution:
+def get_solution(year: int, day: int, input: Optional[str] = None) -> Solution:
     """Import the correct solution and return an instance of it"""
     module_name = f"solutions._{year}._{day:02}"
     class_name = f"Day{day:02}"
 
     module = importlib.import_module(module_name)
     solution_cls = getattr(module, class_name)
-    return solution_cls()
+    solution_obj = solution_cls()
+
+    if input:
+        solution_obj.change_input_file(input)
+
+    return solution_obj
 
 
 def display_solution(solution: Solution, timeit: bool, number: int) -> None:
