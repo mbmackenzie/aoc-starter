@@ -2,6 +2,13 @@
 
 https://adventofcode.com/
 
+A code starter for the Advent of Code.
+
+## My Solutions
+
+- [2020](https://github.com/mbmackenzie/advent-of-code/tree/solutions/solutions/_2020)
+
+
 ## Getting Started
 
 After cloning the repository, pip install the project so you have access to the `aoc` command.
@@ -14,6 +21,7 @@ pip install -e .
 Next, to create a fresh projcet, deleteing all the solutions in the repositioty.
 
 ```bash
+git checkout -b solutions
 aoc init --from-scratch
 ```
 
@@ -23,7 +31,6 @@ Now, you are ready to start implementing your solutions!
 aoc create --day 1
 ```
 
-This will create two files,
+This will:,
 
-- "solutions/\_2021/\_01.py" the python file where you'll implement the solution, and
-- "inputs/\_2020/\_01.txt" the plain text file where you'll copy the input data to
+- create `solutions/_2021/_01.py`, the python file where you'll implement the solution
