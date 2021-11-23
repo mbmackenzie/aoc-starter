@@ -1,1 +1,4 @@
 click==8.0.3
+mypy==0.910
+pylint==2.9.6
+black==19.10b0
