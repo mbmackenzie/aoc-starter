@@ -56,19 +56,9 @@ class SolutionManager:
         return Path(filepath)
 
     @property
-    def input_filepath(self) -> Path:
-        filepath = os.path.join("inputs", f"_{self.year}", f"_{self.day:02}.txt")
-        return Path(filepath)
-
-    @property
     def has_solution_file(self) -> bool:
         """Check if the solution file exists"""
         return self.solution_filepath.exists()
-
-    @property
-    def has_input_file(self) -> bool:
-        """Check if the input file exists"""
-        return self.input_filepath.exists()
 
     def create(self, overwrite: Optional[bool] = False) -> None:
         """Create the solution."""
@@ -79,20 +69,14 @@ class SolutionManager:
         template = self._create_solution_template()
 
         self.create_solution_file(template)
-        self.create_input_file()
 
     def delete(self) -> None:
         """Delete the solution"""
         delete_file(self.solution_filepath)
-        delete_file(self.input_filepath)
 
     def create_solution_file(self, template: str) -> None:
         """Save the solution file"""
         save_file(self.solution_filepath, template)
-
-    def create_input_file(self) -> None:
-        """Save the input file"""
-        save_file(self.input_filepath)
 
     def _create_solution_template(self) -> str:
         """Create a template for a solution and return the filepath"""
@@ -101,7 +85,7 @@ class SolutionManager:
 
     def _format_solution_template(self, template: str) -> str:
         """Format the template for a solution"""
-        
+
         name = self.name if self.name else ""
         docstring = f"Day {self.day}" + (f": {self.name}" if self.name else "")
         return template.format(

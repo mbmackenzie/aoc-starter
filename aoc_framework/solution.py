@@ -1,7 +1,8 @@
-from typing import Any, Optional
-
-from abc import ABC, abstractmethod
+from abc import ABC
+from abc import abstractmethod
 from timeit import timeit as get_best_time
+from typing import Any
+from typing import Optional
 
 from .input_reader import InputReader
 
@@ -13,12 +14,12 @@ class SolutionResult:
         self, result: Any, time: Optional[float], number: Optional[int]
     ) -> None:
         """Initialize the solution result.
-        
+
         Parameters
         ----------
         result : Any
             The result of the solution.
-        
+
         time : Optional[float]
             The time taken to solve the solution.
 
@@ -45,11 +46,11 @@ class SolutionResult:
 class Solution(ABC):
     """Base class for a solution
 
-    This class should be inherited by concrete solutions. 
-    There are varying functions that must be, and can be implemented. 
+    This class should be inherited by concrete solutions.
+    There are varying functions that must be, and can be implemented.
 
     You can call the class to create a tuple of results from part one and part two.
-    
+
     Parameters
     ----------
     year : int
@@ -124,9 +125,9 @@ class Solution(ABC):
 
     def _get_data(self) -> list[str]:
         """
-        Process the input data to return a list. 
-        The return default is the input data as a list of strings, delimeted by newlines. 
-        This function is used to load the data for both part one and two if 
+        Process the input data to return a list.
+        The return default is the input data as a list of strings, delimeted by newlines.
+        This function is used to load the data for both part one and two if
         _get_data_for_part_one and _get_data_for_part_two are not implemented.
 
         You can change the implementation to return a list of whatever you want. For example::

@@ -1,6 +1,6 @@
 """{docstring}"""
 
-from solutions.solution import Solution
+from aoc_framework.solution import Solution
 
 
 class Day{day:02}(Solution):
@@ -19,4 +19,3 @@ class Day{day:02}(Solution):
 
     def _get_data(self) -> list[str]:
         return self.input.as_list()
-

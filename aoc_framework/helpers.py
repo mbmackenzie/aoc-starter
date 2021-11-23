@@ -1,16 +1,16 @@
-import os
-import re
 import glob
-import pathlib
 import importlib
+import os
+import pathlib
+import re
+import sys
 from datetime import datetime
 from typing import Union
-from typing import Optional
 
 import click
 
-from solutions.solution import Solution
-from solutions.solution import SolutionResult
+from aoc_framework.solution import Solution
+from aoc_framework.solution import SolutionResult
 
 
 def get_latest_year() -> int:
@@ -21,18 +21,27 @@ def get_latest_year() -> int:
     return today.year
 
 
-def get_solution(year: int, day: int, input: Optional[str] = None) -> Solution:
-    """Import the correct solution and return an instance of it"""
-    module_name = f"solutions._{year}._{day:02}"
+def import_solution(year: int, day: int, module_name: str) -> Solution:
+    """Import the correct solution"""
+    module_path = str(pathlib.Path(os.getcwd()))
+    sys.path.append(module_path)
+
+    module_full_name = f"{module_name}._{year}._{day:02}"
     class_name = f"Day{day:02}"
 
-    module = importlib.import_module(module_name)
-    solution_cls = getattr(module, class_name)
+    module = importlib.import_module(module_full_name)
+    return getattr(module, class_name)
+
+
+def get_solution(
+    year: int, day: int, module_name: str, input_file: str = None
+) -> Solution:
+    """Import the correct solution and return an instance of it"""
+
+    solution_cls = import_solution(year, day, module_name)
     solution_obj = solution_cls()
 
-    if input:
-        solution_obj.change_input_file(input)
-
+    solution_obj.change_input_file(input_file)
     return solution_obj
 
 
