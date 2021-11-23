@@ -7,7 +7,7 @@ class InputReader:
     def __init__(self, year: int, day: int, input: Optional[str] = None):
         self.year = year
         self.day = day
-        self.filename = input if input else f"inputs/_{year}/_{day:02}.txt"
+        self.filename = input
         self._file_exits = os.path.exists(self.filename)
 
         if self._file_exits:
