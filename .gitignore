@@ -1,5 +1,6 @@
 inputs/
 input.txt
+docs/_html
 
 .DS_Store
 *.vscode*
