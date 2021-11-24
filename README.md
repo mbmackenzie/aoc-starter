@@ -1,6 +1,6 @@
 # Advent of Code Framework
 
-adventofcode.com
+https://adventofcode.com/
 
 A framework for implementing Advent of Code solutions in Python.
 

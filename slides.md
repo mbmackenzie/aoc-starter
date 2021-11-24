@@ -6,7 +6,7 @@ class: invert
 
 # Advent of Code
 
-_adventofcode.com_
+_[adventofcode.com](https://adventofcode.com/)_
 
 ---
 
@@ -42,10 +42,10 @@ Now the `aoc` command should be available and you can do a few things:
 
 ```bash
 # create a python file for 2021 day 1
-aoc create --day 1
+aoc create 01
 
 # run your solution for day 1 using the input
-aoc --day 1 -i input.txt
+aoc run 01 -i input.txt
 ```
 
 ---
