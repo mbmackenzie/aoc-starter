@@ -2,7 +2,7 @@ import os
 from pathlib import Path
 from typing import Optional
 
-TEMPLATE_PATH = os.path.join("solutions", "assets", "solution_template.txt")
+from aoc_framework.helpers import TEMPLATE_PATH
 
 
 def read_solution_template() -> str:
@@ -18,9 +18,6 @@ def create_dir(dirpath: Path) -> None:
 
     os.mkdir(dirpath)
 
-    if dirpath.parts[0] == "solutions":
-        save_file(os.path.join(dirpath, "__init__.py"))
-
 
 def save_file(filepath: Path, content: Optional[str] = None) -> None:
     """Save the content to disk"""
@@ -32,14 +29,8 @@ def save_file(filepath: Path, content: Optional[str] = None) -> None:
             f.write(content)
 
 
-def delete_file(filepath: str) -> None:
-    """Delete a file"""
-    if os.path.exists(filepath):
-        os.remove(filepath)
-
-
 class SolutionManager:
-    """Manage the creation and deletion a solution"""
+    """Manage the creation of a solution"""
 
     year: int
     day: int
@@ -52,7 +43,7 @@ class SolutionManager:
 
     @property
     def solution_filepath(self) -> Path:
-        filepath = os.path.join("solutions", f"_{self.year}", f"_{self.day:02}.py")
+        filepath = os.path.join(f"{self.year}", f"day{self.day:02}.py")
         return Path(filepath)
 
     @property
@@ -60,19 +51,15 @@ class SolutionManager:
         """Check if the solution file exists"""
         return self.solution_filepath.exists()
 
-    def create(self, overwrite: Optional[bool] = False) -> None:
-        """Create the solution."""
+    def create(self) -> "SolutionManager":
+        """Create the solution file using the template"""
 
-        if os.path.exists(self.input_filepath) and not overwrite:
+        if os.path.exists(self.solution_filepath):
             raise FileExistsError()
 
         template = self._create_solution_template()
-
         self.create_solution_file(template)
-
-    def delete(self) -> None:
-        """Delete the solution"""
-        delete_file(self.solution_filepath)
+        return self
 
     def create_solution_file(self, template: str) -> None:
         """Save the solution file"""

@@ -1,10 +1,11 @@
+"""The abstract solution class"""
 from abc import ABC
 from abc import abstractmethod
 from timeit import timeit as get_best_time
 from typing import Any
 from typing import Optional
 
-from .input_reader import InputReader
+from aoc_framework.input_handler import InputHandler
 
 
 class SolutionResult:
@@ -31,15 +32,20 @@ class SolutionResult:
         self.number = number
 
     @property
-    def avg_time(self):
-        """Return the average time of execution."""
-        return self.time / self.number
+    def avg_time(self) -> float:
+        """Return the average time of execution. Returns -1 if not timing."""
+        if not self.time:
+            return -1
+
+        time = self.time if self.time else 0
+        number = self.number if self.number else 0
+        return time / number
 
     def __str__(self) -> str:
         """Return the string representation of the solution result."""
         return f"{self.result}"
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return self.__str__()
 
 
@@ -64,29 +70,32 @@ class Solution(ABC):
 
     """
 
-    def __init__(self, year: int, day: int, name: Optional[str] = None):
+    def __init__(self, year: int, day: int, name: str):
         self.year = year
         self.day = day
         self.name = name
 
-        self.input = InputReader(year, day)
-        self._reformat_data()
-
-        self.__data = None
+        self.input: InputHandler
+        self.__data: list[Any]
 
     @property
     def data(self) -> Any:
         """The data, reformated and mutated"""
+
+        if not self.__data and isinstance(self.__data, list):
+            raise ValueError("Data should not be empty")
+
         return self.__data
 
-    def change_input_file(self, input_file: str) -> None:
+    def set_input_data(self, input_data: list[str]) -> None:
         """Reload and reformat the input file.
 
         Parameters
         ----------
-        input_file : str
+        input_data : list[str]
+            The input data as a list of strings.
         """
-        self.input = InputReader(self.year, self.day, input_file)
+        self.input = InputHandler(input_data)
         self._reformat_data()
 
     def part_one(self) -> int:
@@ -112,18 +121,15 @@ class Solution(ABC):
     @abstractmethod
     def _part_one(self) -> int:
         """Implement part one solution here"""
-        ...
 
     @abstractmethod
     def _part_two(self) -> int:
         """Implement part two solution here"""
-        ...
 
     def _reformat_data(self) -> None:
         """Change how the input data is formatted BEFORE any mutations."""
-        pass
 
-    def _get_data(self) -> list[str]:
+    def _get_data(self) -> list[Any]:
         """
         Process the input data to return a list.
         The return default is the input data as a list of strings, delimeted by newlines.
@@ -135,18 +141,19 @@ class Solution(ABC):
             def _get_data(self) -> list[int]:
                 return self.input.as_list(mutate=int)
 
-        See how the solutions.input_reader.InputReader.as_list() method is used to process the import data.
+        See how the solutions.input_reader.InputReader.as_list() method is used to
+        process the import data.
         """
         return self.input.as_list()
 
-    def _get_data_for_part_one(self) -> list[str]:
+    def _get_data_for_part_one(self) -> list[Any]:
         """
         Used if you need to have specific input processing for part one.
         See Solution._get_data to understand how to implement.
         """
         return self._get_data()
 
-    def _get_data_for_part_two(self) -> list[str]:
+    def _get_data_for_part_two(self) -> list[Any]:
         """
         Used if you need to have specific input processing for part two.
         See Solution._get_data to understand how to implement.
@@ -186,6 +193,20 @@ class Solution(ABC):
     def __call__(
         self, timeit: bool = False, number: int = 1000
     ) -> tuple[SolutionResult, SolutionResult]:
+        """Convenience function to get both part one and two results.
+
+        Parameters
+        ----------
+        timeit : bool, optional
+            Whether to time the execution of each part, by default False
+        number : int, optional
+            The number of repititions to time, by default 1000
+
+        Returns
+        -------
+        tuple[SolutionResult, SolutionResult]
+            Part one result, part two result
+        """
         return (
             self.__make_solution_result("part_one", timeit, number),
             self.__make_solution_result("part_two", timeit, number),

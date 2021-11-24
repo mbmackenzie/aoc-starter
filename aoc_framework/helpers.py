@@ -1,16 +1,16 @@
-import glob
-import importlib
-import os
-import pathlib
-import re
-import sys
+import importlib.machinery
+import importlib.util
 from datetime import datetime
-from typing import Union
+from pathlib import Path
+from typing import Type
 
 import click
 
 from aoc_framework.solution import Solution
 from aoc_framework.solution import SolutionResult
+
+ASSETS_PATH = Path(__file__).parent / "assets"
+TEMPLATE_PATH = ASSETS_PATH / "solution_template.txt"
 
 
 def get_latest_year() -> int:
@@ -21,28 +21,44 @@ def get_latest_year() -> int:
     return today.year
 
 
-def import_solution(year: int, day: int, module_name: str) -> Solution:
+def get_solution_class(solution_file: Path) -> Type[Solution]:
     """Import the correct solution"""
-    module_path = str(pathlib.Path(os.getcwd()))
-    sys.path.append(module_path)
 
-    module_full_name = f"{module_name}._{year}._{day:02}"
-    class_name = f"Day{day:02}"
+    if not solution_file.exists():
+        raise FileNotFoundError(f"Solution file {solution_file} not found!")
 
-    module = importlib.import_module(module_full_name)
-    return getattr(module, class_name)
+    module_name = f"solutions_{solution_file.name[:-3]}"
+    cls_name = solution_file.name[:-3].title()
+
+    spec = importlib.util.spec_from_file_location(module_name, solution_file.resolve())
+
+    if not spec:
+        raise ImportError(f"Could not import {solution_file}")
+
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)  # type: ignore
+
+    return getattr(module, cls_name)
 
 
-def get_solution(
-    year: int, day: int, module_name: str, input_file: str = None
-) -> Solution:
+def get_input_data(input_file: Path) -> list[str]:
+    """Get the input data from the file"""
+    if not input_file.exists():
+        raise FileNotFoundError(f"Input file {input_file} not found!")
+
+    with open(input_file, "r") as f:
+        return f.readlines()
+
+
+def instantiate_solution(solution_file: Path, input_file: Path) -> Solution:
     """Import the correct solution and return an instance of it"""
 
-    solution_cls = import_solution(year, day, module_name)
-    solution_obj = solution_cls()
+    solution_cls = get_solution_class(solution_file)
+    input_data = get_input_data(input_file)
 
-    solution_obj.change_input_file(input_file)
-    return solution_obj
+    solution = solution_cls()  # type: ignore
+    solution.set_input_data(input_data)
+    return solution
 
 
 def display_solution(solution: Solution, timeit: bool, number: int) -> None:
@@ -64,45 +80,3 @@ def display_solution(solution: Solution, timeit: bool, number: int) -> None:
 
     if timeit:
         click.secho(f"Times represent average of {number:,d} runs", fg="yellow")
-
-
-def proceed_with_overwrite(force: bool, confirm: bool) -> bool:
-    """
-    Ask the user if he wants to overwrite the file and return True if he does.
-    If force is True, always return True.
-    If confirm is True, ask the user for confirmation.
-    """
-    if force:
-        if not confirm:
-            confirm = click.confirm(
-                "This will overwrite the file. Are you sure you want to continue?",
-            )
-
-    return force and confirm
-
-
-def find_all_solutions():
-    solutions = []
-    for file in glob.glob(os.path.join("solutions", "_*", "_*.py")):
-
-        solution = get_solution_from_file_path(file)
-
-        if solution:
-            solutions.append(solution)
-
-    return solutions
-
-
-def get_solution_from_file_path(filepath: str) -> Union[tuple[int, int], None]:
-    match_year = re.compile(r"_(20\d\d)").match
-    match_day = re.compile(r"_(\d\d).py").match
-
-    _, year_folder, day_file = pathlib.Path(filepath).parts
-
-    if not match_day(day_file):
-        return None
-
-    year = int(match_year(year_folder).groups()[0])
-    day = int(match_day(day_file).groups()[0])
-
-    return year, day

@@ -1,18 +1,18 @@
-# Advent of Code Template
+# Advent of Code Framework
 
-https://adventofcode.com/
+adventofcode.com
 
 A framework for implementing Advent of Code solutions in Python.
 
-## Getting Started
+## Quick Start
 
-After cloning the repository, pip install the project so you have access to the `aoc` command.
+Pip install the project so you have access to the `aoc` command.
 
 ```bash
 pip install aoc_framework
 ```
 
-Next, to create a fresh projcet, deleteing all the solutions in the repositioty.
+Create an empty directory you want to write your solutions in.
 
 ```bash
 aoc init
@@ -21,9 +21,13 @@ aoc init
 Now, you are ready to start implementing your solutions!
 
 ```bash
-aoc create --day 1
+aoc create 01 --year 2021
 ```
 
-This will:
+This will create python file, `2021/day01.py`, where you'll implement the solution.
 
-- create `solutions/_2021/_01.py` the python file where you'll implement the solution
+After you've implemented the solution, you can run it with:
+
+```bash
+aoc run 01 --year 2021 -i input.txt
+```

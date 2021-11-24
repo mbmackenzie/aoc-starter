@@ -3,6 +3,9 @@
 from aoc_framework.solution import Solution
 
 
+TEST_DATA = """""".strip()
+
+
 class Day{day:02}(Solution):
     """Solution to day {day} of the {year} Advent of Code"""
 
@@ -19,3 +22,16 @@ class Day{day:02}(Solution):
 
     def _get_data(self) -> list[str]:
         return self.input.as_list()
+
+
+def test_solution(data: str) -> None:
+    """Test the solution"""
+    solution = Day{day:02}()
+    solution.set_input_data(data.split("\n"))
+
+    assert solution.part_one() == NotImplemented
+    assert solution.part_two() == NotImplemented
+
+
+if __name__ == "__main__":
+    test_solution(TEST_DATA)
