@@ -2,13 +2,12 @@ import os
 from pathlib import Path
 from typing import Optional
 
-from aoc_framework.helpers import TEMPLATE_PATH
+from aoc_framework.helpers import read_asset
 
 
 def read_solution_template() -> str:
     """Read the template file"""
-    with open(TEMPLATE_PATH) as f:
-        return f.read()
+    return read_asset("solution_template")
 
 
 def create_dir(dirpath: Path) -> None:

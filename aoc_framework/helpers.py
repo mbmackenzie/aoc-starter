@@ -1,4 +1,5 @@
 import importlib.machinery
+import importlib.resources as pkg_resources
 import importlib.util
 from datetime import datetime
 from pathlib import Path
@@ -6,11 +7,14 @@ from typing import Type
 
 import click
 
+from aoc_framework import assets
 from aoc_framework.solution import Solution
 from aoc_framework.solution import SolutionResult
 
-ASSETS_PATH = Path(__file__).parent / "assets"
-TEMPLATE_PATH = ASSETS_PATH / "solution_template.txt"
+
+def read_asset(asset_name: str) -> str:
+    """Read an asset file"""
+    return pkg_resources.read_text(assets, asset_name)
 
 
 def get_latest_year() -> int:
