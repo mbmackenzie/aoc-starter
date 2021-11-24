@@ -7,7 +7,7 @@ from aoc_framework.helpers import read_asset
 
 def read_solution_template() -> str:
     """Read the template file"""
-    return read_asset("solution_template")
+    return read_asset("solution_template.txt")
 
 
 def create_dir(dirpath: Path) -> None:
