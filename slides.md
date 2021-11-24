@@ -14,38 +14,40 @@ _[adventofcode.com](https://adventofcode.com/)_
 
 > **Advent of Code** is an advent calendar of small programming puzzles for a variety of skill sets and skill levels that can be solved in any programming language you like.
 
+<br>
+
 Every day from December 01-25, answer two problems using the provided input.
 
 ---
 
 ### Skils to develop
 
-**Familiarity with python** - _Practice using the python standard library._
+**Familiarity with python** - _practice using the python standard library._
 
 </br>
 
-**Python best practices** - _software principles, type annotations with mypy, testing with pytest..._
+**Python best practices** - _software design principles, type annotations, testing..._
 
 </br>
 
-**Using git and GitHub** - _Make commits, push code, share our code, and get feedback._
+**Using git and GitHub** - _make commits, push code, share code, and get feedback._
 
 ---
 
 ### Starter Code (python)
 
-https://github.com/mbmackenzie/advent-of-code
+[mbmackenzie/adventofcode-framework](https://github.com/mbmackenzie/adventofcode-framework)
 
-Clone and pip install the repository.
+</br>
 
-Now the `aoc` command should be available and you can do a few things:
+Use the `aoc` command:
 
 ```bash
 # create a python file for 2021 day 1
-aoc create 01
+aoc create 01 --year 2021
 
 # run your solution for day 1 using the input
-aoc run 01 -i input.txt
+aoc run 01 --year 2021 -i input.txt
 ```
 
 ---
