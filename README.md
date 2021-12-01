@@ -9,7 +9,7 @@ A framework for implementing Advent of Code solutions in Python.
 Pip install the project so you have access to the `aoc` command.
 
 ```bash
-pip install aoc_framework
+pip install aoc-starter
 ```
 
 Create an empty directory you want to write your solutions in.
