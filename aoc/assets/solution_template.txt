@@ -1,6 +1,6 @@
 """{docstring}"""
 
-from aoc_framework.solution import Solution
+from aoc.solution import Solution
 
 
 TEST_DATA = """""".strip()

@@ -45,7 +45,7 @@ class InputHandler:
         of lines that should be together, but are seperated by newlines, you can reformat the data
         to make each group a single element in the list.
 
-        See `aoc_framework.reformaters`
+        See `aoc.reformaters`
 
         Parameters
         ----------

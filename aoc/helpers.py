@@ -7,9 +7,9 @@ from typing import Type
 
 import click
 
-from aoc_framework import assets
-from aoc_framework.solution import Solution
-from aoc_framework.solution import SolutionResult
+from aoc import assets
+from aoc.solution import Solution
+from aoc.solution import SolutionResult
 
 
 def read_asset(asset_name: str) -> str:

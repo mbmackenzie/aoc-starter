@@ -2,7 +2,7 @@ import os
 from pathlib import Path
 from typing import Optional
 
-from aoc_framework.helpers import read_asset
+from aoc.helpers import read_asset
 
 
 def read_solution_template() -> str:

@@ -5,7 +5,7 @@ from timeit import timeit as get_best_time
 from typing import Any
 from typing import Optional
 
-from aoc_framework.input_handler import InputHandler
+from aoc.input_handler import InputHandler
 
 
 class SolutionResult:

@@ -4,10 +4,10 @@ from typing import Optional
 
 import click
 
-from aoc_framework.helpers import display_solution
-from aoc_framework.helpers import get_latest_year
-from aoc_framework.helpers import instantiate_solution
-from aoc_framework.solution_manager import SolutionManager
+from aoc.helpers import display_solution
+from aoc.helpers import get_latest_year
+from aoc.helpers import instantiate_solution
+from aoc.solution_manager import SolutionManager
 
 
 @click.group()
