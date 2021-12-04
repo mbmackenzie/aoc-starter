@@ -18,7 +18,10 @@ def read_asset(asset_name: str) -> str:
 
 
 def get_latest_year() -> int:
-    """Returns the last year if we are not in december yet otherwise returns the current year."""
+    """
+    Returns the last year if we are not in december yet otherwise
+    returns the current year.
+    """
     today = datetime.now()
     if today.month < 12:
         return today.year - 1
