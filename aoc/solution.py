@@ -96,6 +96,7 @@ class Solution(ABC):
             The input data as a list of strings.
         """
         self.input = InputHandler(input_data)
+        self._pop_lines()
         self._reformat_data()
 
     def part_one(self) -> int:
@@ -125,6 +126,9 @@ class Solution(ABC):
     @abstractmethod
     def _part_two(self) -> int:
         """Implement part two solution here"""
+
+    def _pop_lines(self) -> None:
+        """Remove lines from the beginning of the input data, before any reformatting"""
 
     def _reformat_data(self) -> None:
         """Change how the input data is formatted BEFORE any mutations."""
