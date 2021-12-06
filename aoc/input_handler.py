@@ -19,7 +19,13 @@ class InputHandler:
         return self.__content
 
     def pop_line(self) -> str:
-        return self.__content.pop(0)
+        """Remove the first element of the content list and return it"""
+        item = self.__content.pop(0)
+
+        while self.__content[0] == "":
+            self.__content.pop(0)
+
+        return item
 
     def as_list(
         self, mutate: Optional[MutateFunction] = None, **kwargs: Any
