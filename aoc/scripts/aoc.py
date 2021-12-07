@@ -1,4 +1,3 @@
-import os
 import pathlib
 from typing import Optional
 
@@ -7,6 +6,7 @@ import click
 from aoc.helpers import display_solution
 from aoc.helpers import get_latest_year
 from aoc.helpers import instantiate_solution
+from aoc.input_manager import InputManager
 from aoc.solution_manager import SolutionManager
 
 
@@ -18,14 +18,9 @@ def cli() -> None:
 @cli.command()
 def init() -> None:
     """Initialize a new solution folder"""
-    curdir = pathlib.Path(os.getcwd())
-
-    if os.listdir(curdir):
-        click.echo("Please run this command from an empty directory")
-        return
-
     pathlib.Path("input.txt").touch()
     pathlib.Path("requirements.txt").touch()
+    pathlib.Path(".env").touch()
 
 
 @cli.command()
@@ -35,6 +30,7 @@ def init() -> None:
 @click.option("--number", "-n", "number", type=int, default=1000)
 @click.option("-i", "input_file", type=str, default="input.txt")
 @click.option("-s", "solution_file", type=str, default=None)
+@click.option("--pull", is_flag=True, default=False)
 def run(
     day: int,
     year: int,
@@ -42,6 +38,7 @@ def run(
     number: int,
     input_file: str,
     solution_file: Optional[str],
+    pull: bool,
 ) -> None:
     """Run a solution file"""
     if not input_file:
@@ -50,6 +47,9 @@ def run(
 
     if not solution_file:
         solution_file = f"{year}/day{day:02}.py"
+
+    if pull:
+        InputManager(year, day).create_input_file()
 
     input_path = pathlib.Path(input_file)
     solution_path = pathlib.Path(solution_file)
