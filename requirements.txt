@@ -5,3 +5,4 @@ flake8
 mypy==0.910
 pre-commit
 pytest
+tox
