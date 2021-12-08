@@ -1,5 +1,6 @@
 import pathlib
-import urllib.request
+
+import requests
 
 
 class InputManager:
@@ -28,5 +29,4 @@ class InputManager:
         session_header = {"Cookie": f"session={session_cookie}"}
         url = f"https://adventofcode.com/{self.year}/day/{self.day}/input"
 
-        req = urllib.request.Request(url, headers=session_header)
-        return urllib.request.urlopen(req).read().decode()
+        return requests.get(url, headers=session_header).text
