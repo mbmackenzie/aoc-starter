@@ -1,8 +1,11 @@
 black==19.10b0
 click==8.0.3
-coverage
-flake8
+coverage==6.2
+flake8==4.0.1
 mypy==0.910
-pre-commit
-pytest
-tox
+pre-commit==2.16.0
+pytest==6.2.5
+requests==2.26.0
+responses==0.16.0
+tox==3.24.4
+types-requests==2.26.1

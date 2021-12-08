@@ -1,6 +1,8 @@
 inputs/
 input.txt
 docs/_html
+test_dir/
+.aoc_cache/
 
 .DS_Store
 *.vscode*
